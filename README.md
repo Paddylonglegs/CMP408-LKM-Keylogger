@@ -5,4 +5,4 @@ This Keylogger was made for my university module CMP408 IOT project. In the send
 
 To find keyboard scancodes I ran the command 
 
-sudo showkey --scancodes
+>sudo showkey --scancodes
